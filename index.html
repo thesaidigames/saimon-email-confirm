@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Bestätigt - Saimon</title>
+    <title>Email Confirmed - Saimon</title>
     <style>
         * {
             margin: 0;
@@ -80,50 +80,50 @@
 <body>
     <div class="container">
         <div class="success-icon"></div>
-        <h1>Email erfolgreich bestätigt!</h1>
-        <p>Deine Email-Adresse wurde erfolgreich verifiziert.</p>
-        <p>Du kannst diese Seite jetzt schließen und dich in der Unity-App anmelden.</p>
+        <h1>Email successfully confirmed!</h1>
+        <p>Your email address has been successfully verified.</p>
+        <p>You can now close this page and log in Saimon.</p>
         
         <div class="info">
-            <p><strong>Nächste Schritte:</strong></p>
-            <p>1. Schließe diese Seite</p>
-            <p>2. Öffne die Saimon Unity-App</p>
-            <p>3. Melde dich mit deinen Zugangsdaten an</p>
+            <p><strong>Next steps:</strong></p>
+            <p>1. Close this page</p>
+            <p>2. Open the Saimon app</p>
+            <p>3. Log in with your credentials</p>
         </div>
         
         <div class="countdown" id="countdown"></div>
     </div>
 
     <script>
-        // URL-Parameter auslesen (falls Supabase welche mitsendet)
+        // Read URL parameters (if Supabase sends any)
         const urlParams = new URLSearchParams(window.location.search);
         const token = urlParams.get('token');
         const type = urlParams.get('type');
         
-        // Optional: Token an Supabase senden zur Bestätigung
-        // (Normalerweise macht Supabase das automatisch beim Klick auf den Link)
+        // Optional: Send token to Supabase for confirmation
+        // (Supabase usually does this automatically when clicking the link)
         
-        // Countdown für automatisches Schließen
+        // Countdown for automatic closing
         let seconds = 5;
         const countdownEl = document.getElementById('countdown');
         
         function updateCountdown() {
             if (seconds > 0) {
-                countdownEl.textContent = `Diese Seite schließt sich automatisch in ${seconds} Sekunden...`;
+                countdownEl.textContent = `This page will close automatically in ${seconds} seconds...`;
                 seconds--;
                 setTimeout(updateCountdown, 1000);
             } else {
-                // Versuche Fenster zu schließen (funktioniert nur wenn von Script geöffnet)
+                // Try to close window (only works if opened by script)
                 window.close();
                 
-                // Falls window.close() nicht funktioniert, zeige Meldung
+                // If window.close() doesn't work, show message
                 if (!document.hidden) {
-                    countdownEl.textContent = "Du kannst diese Seite jetzt schließen.";
+                    countdownEl.textContent = "You can close this page now.";
                 }
             }
         }
         
-        // Starte Countdown nach 2 Sekunden
+        // Start countdown after 2 seconds
         setTimeout(updateCountdown, 2000);
     </script>
 </body>
